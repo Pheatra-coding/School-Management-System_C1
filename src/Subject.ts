@@ -1,6 +1,7 @@
 import { Classroom } from "./Classroom";
 import { Teacher } from "./Teacher";
 import { Student } from "./Student";
+import { Assignment } from "./Assignment";
 export class Subject {
     constructor(
         private id: number,
@@ -39,5 +40,5 @@ export class Subject {
     setCode(code: string): void {
         this.code = code;
     }
-    
+
 }
