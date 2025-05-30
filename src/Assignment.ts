@@ -1,5 +1,6 @@
 import { Subject } from "./Subject";
 import { Submission } from "./Submission";
+
 export class Assignment{
     constructor(
         private id:number, 
@@ -7,7 +8,7 @@ export class Assignment{
         private title:string, 
         private description:string, 
         private dueDate:Date, 
-        private submission: Submission[]) 
+        private submission: Submission) 
         {}
 
 
