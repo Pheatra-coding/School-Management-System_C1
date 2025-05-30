@@ -2,6 +2,8 @@ import { Classroom } from "./Classroom";
 import { Teacher } from "./Teacher";
 import { Student } from "./Student";
 import { Assignment } from "./Assignment";
+import { Material } from "./Material";
+import { Exam } from "./Exam";
 export class Subject {
     constructor(
         private id: number,
