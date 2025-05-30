@@ -1,4 +1,5 @@
 import { Classroom } from "./Classroom";
+import { Grade } from "./Grade";
 import { Subject } from "./Subject";
 
 export class Exam{
@@ -14,35 +15,42 @@ export class Exam{
     getId(): number {
         return this.id;
     }
+
     setId(id: number): void {
         this.id = id;
     }
+
     getSubject(): Subject {
         return this.subject;
     }
+
     setSubject(subject: Subject): void {
         this.subject = subject;
     }
+
     getDate(): Date {
         return this.date;
     }
+
     setDate(date: Date): void {
         this.date = date;
     }
+
     getRoom(): Classroom {
         return this.room;
     }
+
     setRoom(room: Classroom): void {
         this.room = room;
     }
+    
     getResult(): number {
         return this.result;
     }
-    setResult(result: number): void {
-        this.result = result;
+    setResult(grade: Grade): void {
     }
 
-    getResult(grade: Grade): void{}
-
-    getEamBystudent(studentId:number):Exam[]{}
+    getEamBystudent(studentId:number):Exam[]{
+        return [];
+    }
 }
