@@ -1,7 +1,14 @@
 import { Subject } from "./Subject";
 import { Submission } from "./Submission";
 export class Assignment{
-    constructor(private id:number, private subject:Subject, private title:string, private description:string, private dueDate:Date, private submission: Submission[]) {}
+    constructor(
+        private id:number, 
+        private subject:Subject, 
+        private title:string, 
+        private description:string, 
+        private dueDate:Date, 
+        private submission: Submission[]) 
+        {}
 
 
     getId(): number {
