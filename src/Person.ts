@@ -7,7 +7,7 @@ export abstract class Person {
         private password: string,
     ) {}
 
-    abstract login(): void;
+    abstract login(email: string, password: string): boolean;
     abstract logout(): void;
 
     getId(): number {

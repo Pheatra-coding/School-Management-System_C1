@@ -7,7 +7,7 @@ export class Student extends Person {
   subjects: Subject[] = [];
   timetable: Timetable[] = [];
 
-  login(): void {
+  login(email: string, password: string): boolean {
     console.log(`logged in as Student.`);
   }
 
