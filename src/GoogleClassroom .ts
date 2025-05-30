@@ -1,6 +1,6 @@
 import { Teacher } from './Teacher';
 import { Student } from './Student';
-import { Material } from './Meterial';
+import { Material } from './Material';
 import { Assignment } from './Assignment';
 
 export class GoogleClassroom {
