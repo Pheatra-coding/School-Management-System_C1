@@ -1,4 +1,4 @@
-abstract class Person {
+export abstract class Person {
 
     constructor(
         private id: number,
