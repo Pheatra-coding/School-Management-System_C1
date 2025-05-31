@@ -8,11 +8,13 @@ export class Student extends Person {
   timetable: Timetable[] = [];
 
   login(email: string, password: string): boolean {
-    console.log(`logged in as Student.`);
+    const success = this.getEmail() === email &&  this.getPassword() === password;
+    console.log(success?`${this.getFullName()} logged in as student` : `Login failed for ${email}`);
+    return success;
   }
 
   logout(): void {
-    console.log(`logged out.`);
+      console.log(`${this.getFullName()} logged out`);
   }
 
   getTimetable(): Timetable[] {

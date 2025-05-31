@@ -5,12 +5,12 @@ import { Teacher } from "./Teacher";
 
 
 export class Admin extends Person {
+  private acc: AccType
   constructor(
     id: number,
     fullName: string,
     email: string,
     password: string,
-    private acc: AccType
   ) {
     super(id,fullName, email, password);
     this.acc = AccType.ADMIN;

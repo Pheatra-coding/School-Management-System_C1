@@ -5,12 +5,14 @@ import { Assignment } from './Assignment';
 export class Teacher extends Person {
   subjects: Subject[] = [];
 
-  login(): void {
-    console.log(`logged in as Teacher.`);
+  login(email: string, password: string): boolean {
+    const sucess = this.getEmail() === email && this.getPassword() === password;
+    console.log(sucess?`${this.getFullName()} logged in as teacher` : `Login failed`);
+    return sucess;
   }
 
   logout(): void {
-    console.log(`logged out.`);
+    console.log(`${this.getFullName()} logged out`);
   }
 
   uploadMaterial(): void {
