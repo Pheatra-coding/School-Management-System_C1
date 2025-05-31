@@ -34,6 +34,10 @@ if (admin.login("admin@gmail.com", "admin123")){
     // Teacher uploads an assignment
     teacher1.uploadAssignment(subject1, "OOP Final project", "Create a complete scholl management system by using OOP in TypeScript", new Date("2025-06-7"));
 
+    // Teacher grades the assignment
+    teacher1.gradeAssignment(subject1.getAssignments()[0], student1, 99, "Great work! Clear explanation of concepts.");
+
+
 
     // logout users
     student1.logout();

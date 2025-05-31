@@ -9,7 +9,7 @@ export class Grade{
         private student: Student, 
         private score: number, 
         private feedback: string,
-        private exam: Exam
+        private exam: Exam | null = null
    ) 
    {}
 
@@ -53,7 +53,7 @@ export class Grade{
         this.feedback = feedback;
     }
 
-    getExam(): Exam {
+    getExam(): Exam | null {
         return this.exam;
     }
 
