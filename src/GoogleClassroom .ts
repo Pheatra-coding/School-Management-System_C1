@@ -9,11 +9,18 @@ export class GoogleClassroom {
         private id: number,
         private code: string,
         private name: string,
-        teacher: Teacher, 
-        students: Student[],
-        lessons: Material[],
-        assignments: Assignment[]
-    ) {}
+        private teacher: Teacher, 
+        private students: Student[] = [],
+        private lessons: Material[] = [],
+        private assignments: Assignment[] = [],
+    ) {
+        this.code = this.generateClassroomCode();
+        console.log(`Classroom "${this.name}" created by ${teacher.getFullName()} with code: ${this.code}`);
+    }
+
+    private generateClassroomCode(): string {
+        return this.code;
+    }
 
     getId(): number {
         return this.id;
@@ -35,11 +42,21 @@ export class GoogleClassroom {
         // logic to add assignment
     }
 
-    joinByCode(code: string): void {
-        if (this.code === code) {
-            console.log(`Joined classroom: ${this.name}`);
+    addStudent(student: Student): void {
+        if (!this.students.includes(student)) {
+            this.students.push(student);
+            console.log(`${student.getFullName()} joined classroom: ${this.name}`);
         } else {
-            console.log(`Invalid code. Cannot join classroom.`);
+            console.log(`${student.getFullName()} is already a member of classroom: ${this.name}`);
+        }
+    }
+
+
+     joinByCode(code: string, student: Student): void {
+        if (this.code === code) {
+            this.addStudent(student);
+        } else {
+            console.log(`Wrong code. ${student.getFullName()} cannot join classroom.`);
         }
     }
 }
