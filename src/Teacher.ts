@@ -31,8 +31,13 @@ export class Teacher extends Person {
     console.log(`${this.getFullName()} uploaded "${fileName}" to subject ${subject.getName()} in classrom ${subject.getClassroom().getRoomName()}`);
   }
 
-  uploadAssignment(): void {
+  uploadAssignment(subject: Subject, title: string, description:string, dueDate:Date): void {
     // logic to upload assignment
+    const assignmentId = subject.getAssignments().length +1
+    const assignment = new Assignment(assignmentId, subject, title, description, dueDate);
+    subject.addAssignment(assignment);
+
+    console.log(`Teacher ${this.getFullName()} uploaded assignment "${title}" to subject ${subject.getName()} with due date ${dueDate.toDateString()}`);
   }
 
   gradeAssignment(): void {

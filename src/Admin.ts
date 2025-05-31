@@ -35,7 +35,7 @@ export class Admin extends Person {
   
   assignSubjectToTeacher(subject:Subject, teacher: Teacher): void {
   teacher.addSubject(subject);
-  console.log(`${this.getFullName()} Assigned subject ${subject.getName()} to teacher ${teacher.getFullName()}`);
+  console.log(`${this.getFullName()} Assigned subject ${subject.getName()} to teacher ${teacher.getFullName()} teach`);
 }
 
 

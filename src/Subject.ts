@@ -7,6 +7,7 @@ import { Exam } from "./Exam";
 export class Subject {
     private materials: Material[] = [];
     private classroom:Classroom;
+    private assignments: Assignment[] = [];
     constructor(
         private id: number,
         private name: string,
@@ -60,9 +61,19 @@ export class Subject {
         return this.materials;
     }
 
+    // get classroom
     getClassroom(): Classroom {
         return this.classroom;
     }
 
+    // Add assignment to the subject
+    addAssignment(assignment: Assignment): void {
+        this.assignments.push(assignment);
+    }
+
+    // Get assignments for the subject
+    getAssignments(): Assignment[] {
+        return this.assignments;
+    }
 
 }

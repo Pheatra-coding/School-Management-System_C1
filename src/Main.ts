@@ -31,6 +31,9 @@ if (admin.login("admin@gmail.com", "admin123")){
     // Teacher uploads study material
     teacher1.uploadMaterial(subject1, "OOP_session5.pdf");
 
+    // Teacher uploads an assignment
+    teacher1.uploadAssignment(subject1, "OOP Final project", "Create a complete scholl management system by using OOP in TypeScript", new Date("2025-06-7"));
+
 
     // logout users
     student1.logout();

@@ -8,8 +8,7 @@ export class Assignment{
         private title:string, 
         private description:string, 
         private dueDate:Date, 
-        private submission: Submission) 
-        {}
+    ) {}
 
 
     getId(): number {
