@@ -1,9 +1,16 @@
 import { Person } from './Person';
 import { Subject } from './Subject';
 import { Assignment } from './Assignment';
+import { AccType } from './AccType';
 
 export class Teacher extends Person {
   subjects: Subject[] = [];
+  private acc: AccType;
+
+  constructor(id: number, fullName: string, email: string, password: string) {
+    super(id, fullName, email, password);
+    this.acc = AccType.TEACHER;
+  }
 
   login(email: string, password: string): boolean {
     const sucess = this.getEmail() === email && this.getPassword() === password;
@@ -25,5 +32,13 @@ export class Teacher extends Person {
 
   gradeAssignment(): void {
     // grading logic
+  }
+
+  addSubject(subject: Subject): void {
+    this.subjects.push(subject);
+  }
+
+  getSubjects(): Subject[] {
+    return this.subjects;
   }
 }

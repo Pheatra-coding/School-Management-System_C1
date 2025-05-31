@@ -1,4 +1,6 @@
 import { Admin } from "./Admin";
+import { Classroom } from "./Classroom";
+import { Subject } from "./Subject";
 
 
 
@@ -18,6 +20,13 @@ if (admin.login("admin@gmail.com", "admin123")){
 
     // Teacher tries to login
     teacher1.login("pheakTra@gmail.com", "Tra123");
+
+    // Admin creates a classroom and a subject
+    const classroom1 = new Classroom("B13");
+    const subject1 = new Subject(1, "OOP", classroom1, "OOP2025", teacher1, [student1], [], [], null, true);
+
+     // Assign Subject to Teacher
+    admin.assignSubjectToTeacher(subject1, teacher1);
 
     // logout users
     student1.logout();

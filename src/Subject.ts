@@ -10,11 +10,11 @@ export class Subject {
         private name: string,
         classroom: Classroom,
         private code: string,
-        teacher: Teacher,
+        private teacher: Teacher,
         students: Student[],
         materials: Material[],
         assignments: Assignment[],
-        exams: Exam,
+        exams: Exam | null,
         private isCompulsory: boolean
     ){}
 
@@ -41,6 +41,9 @@ export class Subject {
 
     setCode(code: string): void {
         this.code = code;
+    }
+    setTeacher(teacher: Teacher): void {
+        this.teacher = teacher;
     }
 
 }

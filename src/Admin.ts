@@ -1,6 +1,7 @@
 import { AccType } from "./AccType";
 import { Person } from "./Person";
 import { Student } from "./Student";
+import { Subject } from "./Subject";
 import { Teacher } from "./Teacher";
 
 
@@ -32,6 +33,11 @@ export class Admin extends Person {
     return new Teacher(id, fullName, email, password);
   }
   
+  assignSubjectToTeacher(subject:Subject, teacher: Teacher): void {
+  teacher.addSubject(subject);
+  console.log(`${this.getFullName()} Assigned subject ${subject.getName()} to teacher ${teacher.getFullName()}`);
+}
+
 
   assignSubject(): void {}
   assignTeacher(): void {}
