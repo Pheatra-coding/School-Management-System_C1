@@ -5,6 +5,8 @@ import { Assignment } from "./Assignment";
 import { Material } from "./Material";
 import { Exam } from "./Exam";
 export class Subject {
+    private materials: Material[] = [];
+    private classroom:Classroom;
     constructor(
         private id: number,
         private name: string,
@@ -16,7 +18,9 @@ export class Subject {
         assignments: Assignment[],
         exams: Exam | null,
         private isCompulsory: boolean
-    ){}
+    ){
+        this.classroom = classroom;
+    }
 
 
     getId(): number {
@@ -45,5 +49,20 @@ export class Subject {
     setTeacher(teacher: Teacher): void {
         this.teacher = teacher;
     }
+
+    // Teacher add the Material 
+    addMaterial(material: Material): void {
+        this.materials.push(material);
+    }
+
+    // Teacher add the Material
+    getMaterials(): Material[] {
+        return this.materials;
+    }
+
+    getClassroom(): Classroom {
+        return this.classroom;
+    }
+
 
 }

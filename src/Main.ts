@@ -25,8 +25,12 @@ if (admin.login("admin@gmail.com", "admin123")){
     const classroom1 = new Classroom("B13");
     const subject1 = new Subject(1, "OOP", classroom1, "OOP2025", teacher1, [student1], [], [], null, true);
 
-     // Assign Subject to Teacher
+     // Admin assign Subject to Teacher
     admin.assignSubjectToTeacher(subject1, teacher1);
+
+    // Teacher uploads study material
+    teacher1.uploadMaterial(subject1, "OOP_session5.pdf");
+
 
     // logout users
     student1.logout();

@@ -2,6 +2,7 @@ import { Person } from './Person';
 import { Subject } from './Subject';
 import { Assignment } from './Assignment';
 import { AccType } from './AccType';
+import { Material } from './Material';
 
 export class Teacher extends Person {
   subjects: Subject[] = [];
@@ -22,8 +23,12 @@ export class Teacher extends Person {
     console.log(`${this.getFullName()} logged out`);
   }
 
-  uploadMaterial(): void {
+  uploadMaterial(subject: Subject, fileName:string): void {
     // logic to upload material
+    const materialId  = subject.getMaterials().length + 1;
+    const material = new Material(materialId, subject, fileName);
+    subject.addMaterial(material)
+    console.log(`${this.getFullName()} uploaded "${fileName}" to subject ${subject.getName()} in classrom ${subject.getClassroom().getRoomName()}`);
   }
 
   uploadAssignment(): void {
