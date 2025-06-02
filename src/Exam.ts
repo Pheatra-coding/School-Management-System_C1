@@ -53,4 +53,6 @@ export class Exam{
     getEamBystudent(studentId:number):Exam[]{
         return [];
     }
+
+
 }

@@ -14,7 +14,7 @@ export class Subject {
         students: Student[],
         private materials: Material[]=[],
         private assignments: Assignment[] = [],
-        exams: Exam | null,
+        private exams: Exam | null,
         private isCompulsory: boolean
     ){
         this.classroom = classroom;
@@ -71,6 +71,10 @@ export class Subject {
     // Get assignments for the subject
     getAssignments(): Assignment[] {
         return this.assignments;
+    }
+
+    setExam(exam: Exam): void {
+        this.exams = exam;
     }
 
 }
