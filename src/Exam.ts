@@ -47,8 +47,13 @@ export class Exam{
     getResult(): number {
         return this.result;
     }
-    setResult(grade: Grade): void {
+    setResult(result: number): void {
+        if (result < 0 || result > 100) {
+        throw new Error('Result must be between 0 and 100');
     }
+    this.result = result;
+    }
+
 
     getEamBystudent(studentId:number):Exam[]{
         return [];
