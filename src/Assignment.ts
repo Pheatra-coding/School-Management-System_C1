@@ -8,6 +8,7 @@ export class Assignment{
         private title:string, 
         private description:string, 
         private dueDate:Date, 
+        submissions: Submission[] = []
     ) {}
 
 

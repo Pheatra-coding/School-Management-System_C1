@@ -1,7 +1,10 @@
 import { Admin } from "./Admin";
+import { Assignment } from "./Assignment";
 import { Classroom } from "./Classroom";
 import { GoogleClassroom } from "./GoogleClassroom ";
+import { Student } from "./Student";
 import { Subject } from "./Subject";
+import { Teacher } from "./Teacher";
 import { Timetable } from "./Timetable";
 
 
@@ -71,6 +74,28 @@ if (admin.login("admin@gmail.com", "admin123")){
     student1.logout();
     teacher1.logout();  
     admin.logout();
+
+
+    // test for another classroom and subject
+
+    let B14 = new Classroom("B14");
+    
+    let mengheang = new Teacher(2, "MengHeang PHO", "mengheang@gmail.com", "Meng123");
+    let pheaktra = new Student(3, "Pheaktra OEM", "pheaktra@gmail.com", "Pheak123");
+
+    pheaktra.login("pheaktra@gmail.com", "Pheak123");
+    mengheang.login("mengheang@gmail.com", "Meng123");
+
+    let algoAss: Assignment;
+
+    let subjectAlgo = new Subject(2, "Algorithm", B14, "Algo2025", mengheang, [pheaktra], [], [], null, true);
+
+    algoAss = new Assignment(2, subjectAlgo, "Algorithm Final Project", "Create a complete algorithm for sorting numbers in TypeScript", new Date("2025-06-10"), []);
+
+    subjectAlgo.getAssignments().push(algoAss);
+
+    console.log(subjectAlgo);
+
 }else {
     console.log("Admin login failed.");
 }
