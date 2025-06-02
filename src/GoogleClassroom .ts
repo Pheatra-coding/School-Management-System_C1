@@ -14,11 +14,11 @@ export class GoogleClassroom {
         private lessons: Material[] = [],
         private assignments: Assignment[] = [],
     ) {
-        this.code = this.generateClassroomCode();
+        this.code = this.classroomCode();
         console.log(`Classroom "${this.name}" created by ${teacher.getFullName()} with code: ${this.code}`);
     }
 
-    private generateClassroomCode(): string {
+    private classroomCode(): string {
         return this.code;
     }
 
