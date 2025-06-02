@@ -5,18 +5,15 @@ import { Assignment } from "./Assignment";
 import { Material } from "./Material";
 import { Exam } from "./Exam";
 export class Subject {
-    private materials: Material[] = [];
-    private classroom:Classroom;
-    private assignments: Assignment[] = [];
     constructor(
         private id: number,
         private name: string,
-        classroom: Classroom,
+        private classroom: Classroom,
         private code: string,
         private teacher: Teacher,
         students: Student[],
-        materials: Material[],
-        assignments: Assignment[],
+        private materials: Material[]=[],
+        private assignments: Assignment[] = [],
         exams: Exam | null,
         private isCompulsory: boolean
     ){
