@@ -2,6 +2,7 @@ import { Admin } from "./Admin";
 import { Classroom } from "./Classroom";
 import { GoogleClassroom } from "./GoogleClassroom ";
 import { Subject } from "./Subject";
+import { Timetable } from "./Timetable";
 
 
 
@@ -33,9 +34,13 @@ if (admin.login("admin@gmail.com", "admin123")){
      // Admin assign Subject to Teacher
     admin.assignSubjectToTeacher(subject1, teacher1);
 
+    // Create and assign a timetable to the student
+    const timetable1 = new Timetable(1, "Monday","7:30am - 9:00am", classroom1);
+    student1.getTimetable().push(timetable1);
+
+
     // Teacher uploads study material
     teacher1.uploadMaterial(subject1, "OOP_session5.pdf");
-
 
 
     // Teacher uploads an assignment
@@ -49,6 +54,12 @@ if (admin.login("admin@gmail.com", "admin123")){
     console.log(`Teacher ${teacher1.getFullName()}  sent code: ${code} to students.`);
     classroom.joinByCode("OOP123", student1); // Success
     classroom.joinByCode("WRONGCODE", student2); // Fails
+
+     // Display student's timetable
+    console.log(`\n${student1.getFullName()}'s Timetable:`);
+        student1.getTimetable().forEach((tt) => {
+        console.log(`Subject: ${subject1.getName()}, Day: ${tt.getDay()}, Time: ${tt.getTime()}, Room: ${subject1.getClassroom().getRoomName()}`);
+    });
 
 
     // Teacher grades the assignment
