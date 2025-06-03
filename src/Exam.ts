@@ -47,17 +47,17 @@ export class Exam{
     getResult(): number {
         return this.result;
     }
-    setResult(result: number): void {
-        if (result < 0 || result > 100) {
-        throw new Error('Result must be between 0 and 100');
+    setResult(grade: Grade): void {
+    const score = grade.getScore();
+    if (score < 0 || score > 100) {
+      throw new Error('Invalid grade score');
     }
-    this.result = result;
-    }
+    this.result = score;
+  }
 
-
-    getEamBystudent(studentId:number):Exam[]{
-        return [];
-    }
+  getExamByStudentId(studentId: number): Exam[] {
+    return [this];
+  }
 
 
 }
