@@ -56,9 +56,6 @@ export class Student extends Person {
     });
   }
 
-  assignSubmission(assignmentId: number, submission: Submission): void {
-    // logic to assign a submission
-  }
 
     giveFeedback(assignment: Assignment, feedback: string): void {
 
