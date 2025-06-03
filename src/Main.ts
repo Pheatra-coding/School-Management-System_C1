@@ -1,3 +1,4 @@
+//==================== IMPORT ALL NECESSARY CLASS MODULES ====================//
 import { Admin } from "./Admin";
 import { Assignment } from "./Assignment";
 import { Classroom } from "./Classroom";
@@ -11,153 +12,120 @@ import { Submission } from "./Submission";
 import { Teacher } from "./Teacher";
 import { Timetable } from "./Timetable";
 
+//==================== ADMIN LOGIN AND ACCOUNT CREATION ====================//
+const admin = new Admin(1, "Admin", "admin@gmail.com", "admin123");
 
+if (admin.login("admin@gmail.com", "admin123")) {
+    console.log("✅ Admin logged in.");
 
-// Create default Admin
-const admin = new Admin(1, "Admin", "admin@gmail.com","admin123");
+    //==================== STUDENT ACCOUNT CREATION ====================//
+    const Ahnoch = admin.createStudent(1, "Ah Noch PhengNeang", "nochGang@gmail.com", "Noch123");
+    const Kosal = admin.createStudent(2, "Kosal Poy", "KosalGang@gmail.com", "sally123");
+    const pheaktra = new Student(3, "Pheaktra OEM", "pheaktra@gmail.com", "Pheak123");
 
-// Admin login
-if (admin.login("admin@gmail.com", "admin123")){
-    console.log("Admin logged in.");
-
-    // Admin creates accout
-    const Ahnoch = admin.creareStudent(1, "Ah Noch PhengNeang", "nochGang@gmail.com","Noch123");
-    const Kosal = admin.creareStudent(2, "Kosal Poy", "KosalGang@gmail.com","sally123");
-
-    const teacher1 = admin.createTeacher(1, "Pheak Tra", "pheakTra@gmail.com", "Tra123");
-    
-
-    // Student tries to login 
     Ahnoch.login("nochGang@gmail.com", "Noch123");
     Kosal.login("KosalGang@gmail.com", "sally123");
-
-    // Teacher tries to login
-    teacher1.login("pheakTra@gmail.com", "Tra123");
-
-    // Admin creates a classroom and a subject
-    const classroom1 = new Classroom("B13");
-    const subject1 = new Subject(1, "OOP", classroom1, "OOP2025", teacher1, [Ahnoch], [], [], null, true);
-
-     // Admin assign Subject to Teacher
-    admin.assignSubjectToTeacher(subject1, teacher1);
-
-    // Create and assign a timetable to the student
-    const timetable1 = new Timetable(1, "Monday","7:30am - 9:00am", classroom1);
-    Ahnoch.getTimetable().push(timetable1);
-
-
-    // Teacher uploads study material
-    teacher1.uploadMaterial(subject1, "OOP_session5.pdf");
-
-
-    // Teacher uploads an assignment
-    teacher1.uploadAssignment(subject1, "OOP Final project", "Create a complete scholl management system by using OOP in TypeScript", new Date("2025-06-7"));
-
-    // Teacher and student created somewhere earlier
-    const classroom = new GoogleClassroom(1, "OOP123", "OOP Class", teacher1);
-
-     // Teacher sends code (printed)
-    const code = classroom.getCode();
-    console.log(`Teacher ${teacher1.getFullName()}  sent code: ${code} to students.`);
-    classroom.joinByCode("OOP123", Ahnoch); // Success
-    classroom.joinByCode("WRONGCODE", Kosal); // Fails
-
-     // Display student's timetable
-    console.log(`\n${Ahnoch.getFullName()}'s Timetable:`);
-        Ahnoch.getTimetable().forEach((tt) => {
-        console.log(`Subject: ${subject1.getName()}, Day: ${tt.getDay()}, Time: ${tt.getTime()}, Room: ${subject1.getClassroom().getRoomName()}`);
-    });
-
-
-
-    // logout users
-    Ahnoch.logout();
-    teacher1.logout();  
-    admin.logout();
-
-
-    // Create Classroom and Participants
-    let B14 = new Classroom("B14");
-    let mengheang = new Teacher(2, "MengHeang PHO", "mengheang@gmail.com", "Meng123");
-    let pheaktra = new Student(3, "Pheaktra OEM", "pheaktra@gmail.com", "Pheak123");
-
-    // Log in users
     pheaktra.login("pheaktra@gmail.com", "Pheak123");
-    mengheang.login("mengheang@gmail.com", "Meng123");
 
-    // Create Subject and Assignment
-    let subjectAlgo = new Subject(2, "Algorithm", B14, "Algo2025", mengheang, [], [], [], null, true);
+    //==================== TEACHER ACCOUNT CREATION ====================//
+    const teacher1 = admin.createTeacher(1, "Pheak Tra", "pheakTra@gmail.com", "Tra123");
+    const mengheang = new Teacher(2, "MengHeang PHO", "mengheang@gmail.com", "Meng123");
+    const yon = new Teacher(4, "Yon YEN", "yon@gmail.com", "yon@1234");
+
+    teacher1.login("pheakTra@gmail.com", "Tra123");
+    mengheang.login("mengheang@gmail.com", "Meng123");
+    yon.login("yon@gmail.com", "yon@1234");
+
+    //==================== CLASSROOM AND SUBJECT SETUP ====================//
+    const B13 = new Classroom("B13");
+    const B14 = new Classroom("B14");
+    const B12 = new Classroom("B12");
+
+    const subjectOOP = new Subject(1, "OOP", B13, "OOP2025", teacher1, [Ahnoch], [], [], null, true);
+    admin.assignSubjectToTeacher(subjectOOP, teacher1);
+
+    const subjectAlgo = new Subject(2, "Algorithm", B14, "Algo2025", mengheang, [pheaktra], [], [], null, true);
     subjectAlgo.setTeacher(mengheang);
 
-    let algoAss = new Assignment(2, subjectAlgo, "Algorithm Final Project", "Create a complete algorithm for sorting numbers in TypeScript", new Date("2025-06-10"));
+    const subjectVue = new Subject(3, "Vue.js", B12, "123", yon, [Ahnoch], [], [], null, true);
+    subjectVue.setTeacher(yon);
 
-    // Assign the assignment to the subject
+    //==================== TIMETABLE ====================//
+    const timetable1 = new Timetable(1, "Monday", "7:30am - 9:00am", B13);
+    Ahnoch.getTimetable().push(timetable1);
+
+    //==================== MATERIALS AND ASSIGNMENTS ====================//
+    teacher1.uploadMaterial(subjectOOP, "OOP_session5.pdf");
+    teacher1.uploadAssignment(
+        subjectOOP,
+        "OOP Final project",
+        "Create a complete school management system by using OOP in TypeScript",
+        new Date("2025-06-07")
+    );
+
+    const algoAss = new Assignment(
+        2,
+        subjectAlgo,
+        "Algorithm Final Project",
+        "Create a complete algorithm for sorting numbers in TypeScript",
+        new Date("2025-06-10")
+    );
     subjectAlgo.getAssignments().push(algoAss);
-    subjectAlgo.addAssignment(algoAss); // optional if `addAssignment()` is your preferred way
-
-    // Assign the assignment to student
     pheaktra.assignments.push(algoAss);
 
-    // Student starts and submits the assignment
-    let submission = pheaktra.startAssignmentSubmission(algoAss);
+    const vueExamMaterial = new Material(1, subjectVue, "Vue.js Final exam");
+    subjectVue.getMaterials().push(vueExamMaterial);
+
+    const vueExam = new Exam(1, subjectVue, new Date("2025-06-07"), B12, 0);
+    subjectVue.setExam(vueExam);
+
+    const lesson1 = new Material(2, subjectVue, "Vue.js Lesson 1");
+    subjectVue.addMaterial(lesson1);
+
+    const vueASS = new Assignment(3, subjectVue, "Vue.js Assignment 1", "Complete the Vue.js assignment", new Date("2025-06-15"));
+    subjectVue.addAssignment(vueASS);
+
+    //==================== ASSIGNMENT SUBMISSION ====================//
+    const submission = pheaktra.startAssignmentSubmission(algoAss);
     pheaktra.finalizeSubmission(submission, "This is my final submission for the algorithm project.");
 
-    // Log submission result
-    console.log("Submission status:", submission.getStatus());
-    console.log("Is late?", submission.isLate());
+    console.log("✅ Submission status:", submission.getStatus());
+    console.log("📌 Is late?", submission.isLate());
 
-    // add subject for pheaktra
-    pheaktra.subjects.push(subjectAlgo);
-
-    // add subject for assignment
-    pheaktra.assignments.push(algoAss);
-
-    // test student 
-    let grade = new Grade(1, algoAss, Ahnoch, 99, "Your are doing good please keep going on");
+    //==================== GRADING ====================//
+    const grade = new Grade(1, algoAss, Ahnoch, 99, "You are doing good, please keep going.");
     mengheang.gradeAssignment(algoAss, Ahnoch, grade);
-    Ahnoch.viewGrades(grade)
-    
-    let b12 = new Classroom("B12");
-    let yon = new Teacher(4, "Yon YEN", "yon@gmail.com", "yon@1234");
-    yon.login("yon@gmail.com", "yon@1234");
-    
-    let exam: Exam;
-    let vue: Subject;
-    let VueMaterial: Material;
+    Ahnoch.viewGrades(grade);
 
-    vue = new Subject(1, "Vue.js", b12, "123", yon, [Ahnoch], [], [], null, true);
-    VueMaterial = new Material(1, vue, "Vue.js Final exam");
-    vue.getMaterials().push(VueMaterial);
-    exam = new Exam(1, vue, new Date("Jun 07 2025"), b12, 0);
-    vue.setExam(exam); 
-    Ahnoch.viewSchedule(exam);
+    //==================== EXAM SCHEDULE ====================//
+    Ahnoch.viewSchedule(vueExam);
 
+    //==================== GOOGLE CLASSROOM ====================//
+    const gClassroom = new GoogleClassroom(1, "OOP123", "OOP Class", teacher1);
+    console.log(`📨 Teacher ${teacher1.getFullName()} sent code: ${gClassroom.getCode()} to students.`);
 
-    //________________add lesson to google classroom____________________
+    gClassroom.joinByCode("OOP123", Ahnoch); 
+    gClassroom.joinByCode("WRONGCODE", Kosal); 
 
-    // create a lesson 
-    const lesson1 = new Material(1, vue, "Vue.js Lesson 1");
+    gClassroom.addLesson(lesson1);
+    gClassroom.addAssignment(vueASS);
 
-    // Add lesson to the subject
-    vue.addMaterial(lesson1);
+    console.log("🧾 Google Classroom Info:", gClassroom);
 
-    // Add Lesson to Google Classroom
-    classroom.addLesson(lesson1);
+    //==================== STUDENT TIMETABLE DISPLAY ====================//
+    console.log(`\n📅 ${Ahnoch.getFullName()}'s Timetable:`);
+    Ahnoch.getTimetable().forEach((tt) => {
+        console.log(`Subject: ${subjectOOP.getName()}, Day: ${tt.getDay()}, Time: ${tt.getTime()}, Room: ${subjectOOP.getClassroom().getRoomName()}`);
+    });
 
-
-    //________________add assignment to google classroom____________________
-
-    // create an assignment
-    const vueASS = new Assignment(1, vue, "Vue.js Assignment 1", "Complete the Vue.js assignment", new Date("2025-06-15"));
-
-    // Add assignment to the subject
-    vue.addAssignment(vueASS);
-
-    // teacher uploads assignment to Google Classroom
-    classroom.addAssignment(vueASS);
-
-    console.log(classroom);
-    
-}else {
-    console.log("Admin login failed.");
+    //==================== LOGOUT ====================//
+    Ahnoch.logout();
+    Kosal.logout();
+    pheaktra.logout();
+    teacher1.logout();
+    mengheang.logout();
+    yon.logout();
+    admin.logout();
+} else {
+    console.log("❌ Admin login failed.");
 }

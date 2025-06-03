@@ -25,7 +25,7 @@ export class Admin extends Person {
     console.log(`${this.getFullName()} logged out.`);
   }
 
-  creareStudent(id: number, fullName: string, email: string, password: string):Student{
+  createStudent(id: number, fullName: string, email: string, password: string):Student{
     return new Student(id, fullName, email, password);
   }
 
