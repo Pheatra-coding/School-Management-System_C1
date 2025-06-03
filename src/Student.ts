@@ -48,6 +48,24 @@ export class Student extends Person {
     // logic to assign a submission
   }
 
+    giveFeedback(assignment: Assignment, feedback: string): void {
+
+    if (!this.assignments.includes(assignment)) {
+      console.log(`Cannot give feedback: Assignment "${assignment.getTitle()}" not found for student ${this.getFullName()}.`);
+      return;
+    }
+    if ((assignment as any).feedbacks && Array.isArray((assignment as any).feedbacks)) {
+      (assignment as any).feedbacks.push({
+        student: this.getFullName(),
+        feedback: feedback,
+        date: new Date()
+      });
+      console.log(`Feedback added to assignment "${assignment.getTitle()}": "${feedback}"`);
+    } else {
+      console.log(`Student ${this.getFullName()} gave feedback on "${assignment.getTitle()}": "${feedback}"`);
+    }
+  }
+
 public startAssignmentSubmission(assignment: Assignment): Submission {
     const submissionId = this.submissions.length + 1;
     const newSubmission = new Submission(submissionId, this, assignment, "", new Date(), "draft");
