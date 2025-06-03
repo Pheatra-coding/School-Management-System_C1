@@ -29,19 +29,31 @@ export class Student extends Person {
   }
 
   viewGrades(grade: Grade): void {
-    // logic to view grades
     this.grades.push(grade);
     console.log(this.grades)
   }
 
   viewSchedule(exam:Exam): void {
-    // logic to view schedule
     this.exams.push(exam);
     console.log(exam);
   }
 
-  viewFeedback(): void {
-    // logic to view feedback
+    viewFeedback(): void {
+    if (this.assignments.length === 0) {
+      console.log("No assignments found for this student.");
+      return;
+    }
+    this.assignments.forEach(assignment => {
+      if ((assignment as any).feedbacks && Array.isArray((assignment as any).feedbacks)) {
+        console.log(`Feedback for assignment "${assignment.getTitle()}":`);
+        (assignment as any).feedbacks.forEach((fb: any, idx: number) => {
+          console.log(`  ${idx + 1}. From: ${fb.student} | Date: ${fb.date instanceof Date ? fb.date.toLocaleString() : fb.date}`);
+          console.log(`     "${fb.feedback}"`);
+        });
+      } else {
+        console.log(`No feedback found for assignment "${assignment.getTitle()}".`);
+      }
+    });
   }
 
   assignSubmission(assignmentId: number, submission: Submission): void {
