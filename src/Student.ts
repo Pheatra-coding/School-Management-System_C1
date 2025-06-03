@@ -3,11 +3,13 @@ import { Subject } from './Subject';
 import { Timetable } from './Timetable';
 import { Submission } from './Submission';
 import { Grade } from './Grade';
+import { Exam } from './Exam';
 
 export class Student extends Person {
   subjects: Subject[] = [];
   timetable: Timetable[] = [];
   grades: Grade[] = [];
+  exams: Exam [] = [];
 
   login(email: string, password: string): boolean {
     const success = this.getEmail() === email &&  this.getPassword() === password;
@@ -29,8 +31,10 @@ export class Student extends Person {
     console.log(this.grades)
   }
 
-  viewSchedule(): void {
+  viewSchedule(exam:Exam): void {
     // logic to view schedule
+    this.exams.push(exam);
+    console.log(exam);
   }
 
   viewFeedback(): void {
