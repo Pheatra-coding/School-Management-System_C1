@@ -2,10 +2,12 @@ import { Person } from './Person';
 import { Subject } from './Subject';
 import { Timetable } from './Timetable';
 import { Submission } from './Submission';
+import { Grade } from './Grade';
 
 export class Student extends Person {
   subjects: Subject[] = [];
   timetable: Timetable[] = [];
+  grades: Grade[] = [];
 
   login(email: string, password: string): boolean {
     const success = this.getEmail() === email &&  this.getPassword() === password;
@@ -21,8 +23,10 @@ export class Student extends Person {
     return this.timetable;
   }
 
-  viewGrades(): void {
+  viewGrades(grade: Grade): void {
     // logic to view grades
+    this.grades.push(grade);
+    console.log(this.grades)
   }
 
   viewSchedule(): void {
