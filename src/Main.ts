@@ -4,6 +4,7 @@ import { Classroom } from "./Classroom";
 import { GoogleClassroom } from "./GoogleClassroom ";
 import { Student } from "./Student";
 import { Subject } from "./Subject";
+import { Submission } from "./Submission";
 import { Teacher } from "./Teacher";
 import { Timetable } from "./Timetable";
 
@@ -76,26 +77,42 @@ if (admin.login("admin@gmail.com", "admin123")){
     admin.logout();
 
 
-    // test for another classroom and subject
-
+    // Create Classroom and Participants
     let B14 = new Classroom("B14");
-    
     let mengheang = new Teacher(2, "MengHeang PHO", "mengheang@gmail.com", "Meng123");
     let pheaktra = new Student(3, "Pheaktra OEM", "pheaktra@gmail.com", "Pheak123");
 
+    // Log in users
     pheaktra.login("pheaktra@gmail.com", "Pheak123");
     mengheang.login("mengheang@gmail.com", "Meng123");
 
-    let algoAss: Assignment;
+    // Create Subject and Assignment
+    let subjectAlgo = new Subject(2, "Algorithm", B14, "Algo2025", mengheang, [], [], [], null, true);
+    subjectAlgo.setTeacher(mengheang);
 
-    let subjectAlgo = new Subject(2, "Algorithm", B14, "Algo2025", mengheang, [pheaktra], [], [], null, true);
+    let algoAss = new Assignment(2, subjectAlgo, "Algorithm Final Project", "Create a complete algorithm for sorting numbers in TypeScript", new Date("2025-06-10"));
 
-    algoAss = new Assignment(2, subjectAlgo, "Algorithm Final Project", "Create a complete algorithm for sorting numbers in TypeScript", new Date("2025-06-10"), []);
-
+    // Assign the assignment to the subject
     subjectAlgo.getAssignments().push(algoAss);
+    subjectAlgo.addAssignment(algoAss); // optional if `addAssignment()` is your preferred way
 
-    console.log(subjectAlgo);
+    // Assign the assignment to student
+    pheaktra.assignments.push(algoAss);
 
+    // Student starts and submits the assignment
+    let submission = pheaktra.startAssignmentSubmission(algoAss);
+    pheaktra.finalizeSubmission(submission, "This is my final submission for the algorithm project.");
+
+    // Log submission result
+    console.log("Submission status:", submission.getStatus());
+    console.log("Is late?", submission.isLate());
+
+    // add subject for pheaktra
+    pheaktra.subjects.push(subjectAlgo);
+
+    // add subject for assignment
+    pheaktra.assignments.push(algoAss);
+    
 }else {
     console.log("Admin login failed.");
 }

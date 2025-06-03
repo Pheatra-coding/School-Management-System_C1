@@ -48,6 +48,10 @@ export class Subject {
         this.teacher = teacher;
     }
 
+    getTeacher(): Teacher {
+        return this.teacher;
+    }
+
     // Teacher add the Material 
     addMaterial(material: Material): void {
         this.materials.push(material);

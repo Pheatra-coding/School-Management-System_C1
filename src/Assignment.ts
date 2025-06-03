@@ -2,14 +2,21 @@ import { Subject } from "./Subject";
 import { Submission } from "./Submission";
 
 export class Assignment{
+    private submissions: Submission[];
+    assignments: Assignment[];
+
     constructor(
         private id:number, 
         private subject:Subject, 
         private title:string, 
         private description:string, 
         private dueDate:Date, 
-        submissions: Submission[] = []
-    ) {}
+        submissions: Submission[] = [],
+        assignments: Assignment[] = []
+    ) {
+        this.submissions = submissions;
+        this.assignments = assignments;
+    }
 
 
     getId(): number {
@@ -48,6 +55,12 @@ export class Assignment{
 
     setDueDate(dueDate: Date): void {
         this.dueDate = dueDate;
+    }
+    addSubmission(submission: Submission): void {
+        this.submissions.push(submission);
+    }
+    getSubmissions(): Submission[] {
+        return this.submissions;
     }
     
 }
