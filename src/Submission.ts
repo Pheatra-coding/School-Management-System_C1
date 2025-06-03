@@ -67,5 +67,16 @@ export class Submission {
     }
 
 
+    updateContent(newContent: string): void {
+        if (this.status === "draft" || this.status === "resubmitted") {
+            this.content = newContent;
+            this.submitAt = new Date();
+            this.status = "resubmitted";
+        } else {    
+           console.log("Cannot update content of a submitted assignment");
+        }
+    }
+
+
 
 }
