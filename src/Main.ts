@@ -1,8 +1,10 @@
 import { Admin } from "./Admin";
 import { Assignment } from "./Assignment";
 import { Classroom } from "./Classroom";
+import { Exam } from "./Exam";
 import { GoogleClassroom } from "./GoogleClassroom ";
 import { Grade } from "./Grade";
+import { Material } from "./Material";
 import { Student } from "./Student";
 import { Subject } from "./Subject";
 import { Teacher } from "./Teacher";
@@ -99,6 +101,21 @@ if (admin.login("admin@gmail.com", "admin123")){
     mengheang.gradeAssignment(algoAss, Ahnoch, grade);
     Ahnoch.viewGrades(grade)
     
+    let b12 = new Classroom("B12");
+    let yon = new Teacher(4, "Yon YEN", "yon@gmail.com", "yon@1234");
+    yon.login("yon@gmail.com", "yon@1234");
+    
+    let exam: Exam;
+    let vue: Subject;
+    let VueMaterial: Material;
+
+    vue = new Subject(1, "Vue.js", b12, "123", yon, [Ahnoch], [], [], null, true);
+    VueMaterial = new Material(1, vue, "Vue.js Final exam");
+    vue.getMaterials().push(VueMaterial);
+    exam = new Exam(1, vue, new Date("Jun 07 2025"), b12, 0);
+    vue.setExam(exam); 
+    Ahnoch.viewSchedule(exam);
+  
 
 
 

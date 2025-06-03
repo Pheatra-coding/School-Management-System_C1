@@ -77,4 +77,8 @@ export class Subject {
         this.exams = exam;
     }
 
+    getExam(): Exam | null {
+        return this.exams;
+    }
+
 }
