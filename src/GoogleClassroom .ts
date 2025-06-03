@@ -44,7 +44,12 @@ export class GoogleClassroom {
     }
 
     addAssignment(assignment: Assignment): void {
-        // logic to add assignment
+        if (!this.assignments.includes(assignment)) {
+            this.assignments.push(assignment);
+            console.log(`Assignment "${assignment.getTitle()}" added to classroom: ${this.name}`);
+        } else {
+            console.log(`Assignment "${assignment.getTitle()}" already exists in classroom: ${this.name}`);
+        }
     }
 
     addStudent(student: Student): void {

@@ -143,6 +143,20 @@ if (admin.login("admin@gmail.com", "admin123")){
 
     // Add Lesson to Google Classroom
     classroom.addLesson(lesson1);
+
+
+    //________________add assignment to google classroom____________________
+
+    // create an assignment
+    const vueASS = new Assignment(1, vue, "Vue.js Assignment 1", "Complete the Vue.js assignment", new Date("2025-06-15"));
+
+    // Add assignment to the subject
+    vue.addAssignment(vueASS);
+
+    // teacher uploads assignment to Google Classroom
+    classroom.addAssignment(vueASS);
+
+    console.log(classroom);
     
 }else {
     console.log("Admin login failed.");
