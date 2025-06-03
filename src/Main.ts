@@ -131,6 +131,18 @@ if (admin.login("admin@gmail.com", "admin123")){
     exam = new Exam(1, vue, new Date("Jun 07 2025"), b12, 0);
     vue.setExam(exam); 
     Ahnoch.viewSchedule(exam);
+
+
+    //________________add lesson to google classroom____________________
+
+    // create a lesson 
+    const lesson1 = new Material(1, vue, "Vue.js Lesson 1");
+
+    // Add lesson to the subject
+    vue.addMaterial(lesson1);
+
+    // Add Lesson to Google Classroom
+    classroom.addLesson(lesson1);
     
 }else {
     console.log("Admin login failed.");

@@ -35,7 +35,12 @@ export class GoogleClassroom {
     }
 
     addLesson(lesson: Material): void {
-        // logic to add lesson
+        if (!this.lessons.includes(lesson)) {
+            this.lessons.push(lesson);
+            console.log(`Lesson "${lesson.getFileName()}" added to classroom: ${this.name}`);
+        } else {
+            console.log(`Lesson "${lesson.getFileName()}" already exists in classroom: ${this.name}`);
+        }
     }
 
     addAssignment(assignment: Assignment): void {
