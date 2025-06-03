@@ -61,4 +61,11 @@ export class Submission {
         this.status = status;
     }
 
+
+    isLate(): boolean {
+        return this.submitAt > this.assignment.getDueDate();
+    }
+
+
+
 }
