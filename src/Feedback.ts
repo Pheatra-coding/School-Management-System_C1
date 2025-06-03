@@ -64,5 +64,29 @@ export class Feedback{
         this.comment = comment;
     }
 
-    save(): void {}
+     saveFeedback(): void {
+        
+        if (!this.student) {
+            console.log("Student is required.");
+            return;
+        }
+        if (!this.teacher) {
+            console.log("Teacher is required.");
+            return;
+        }
+        if (!this.subject) {
+            console.log("Subject is required.");
+            return;
+        }
+        if (!this.rating) {
+            console.log("Rating is required.");
+            return;
+        }
+        if (!this.comment || this.comment.trim() === "") {
+            console.log("Comment cannot be empty.");
+            return;
+        }
+       //test it
+    //     console.log(`Feedback saved: ${this.comment} by ${this.student.getFullName()} for ${this.subject.getName()} taught by ${this.teacher.getFullName()} `)
+    }
 }
