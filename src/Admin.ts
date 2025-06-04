@@ -1,4 +1,5 @@
 import { AccType } from "./AccType";
+import { Classroom } from "./Classroom";
 import { Person } from "./Person";
 import { Student } from "./Student";
 import { Subject } from "./Subject";
@@ -32,6 +33,8 @@ export class Admin extends Person {
   createTeacher(id: number, fullName: string, email: string, password: string): Teacher {
     return new Teacher(id, fullName, email, password);
   }
+
+  
   
   assignSubjectToTeacher(subject:Subject, teacher: Teacher): void {
   teacher.addSubject(subject);
@@ -41,4 +44,13 @@ export class Admin extends Person {
 
   assignSubject(): void {}
   assignTeacher(): void {}
+
+
+   assignTeacherToClassroom(classroom: Classroom, teacher: Teacher): void {
+    classroom.setTeacher(teacher);
+    console.log(`${this.getFullName()} assigned teacher ${teacher.getFullName()} to classroom ${classroom.getRoomName()}.`);
+  }
+
+
+  
 }
