@@ -61,6 +61,10 @@ export class Submission {
         this.status = status;
     }
 
+    /**
+     * Submit the assignment if it's currently in "draft" status.
+     * Changes status to "submitted" and sets the submission date.
+    */
     public  submit(): void {
         if (this.status === "draft") {
             this.status = "submitted";
@@ -71,11 +75,20 @@ export class Submission {
         }
     }
 
+    /**
+     * Check if the submission was submitted after the assignment's due date.
+     * Returns true if it is late and status is "submitted".
+    */
     public isLate(): boolean {
         const now = new Date();
-        return this.submitAt > this.assignment.getDueDate() && this.status === "submitted";
+        return this.status === "submitted" && this.submitAt > this.assignment.getDueDate();
     }
 
+
+    /**
+     * Update the content of the submission.
+     * Only allowed if the status is "draft" or "resubmitted".
+    */
     public updateContent(newContent: string): void {
         if (this.status === "draft" || this.status === "resubmitted") {
             this.content = newContent;
