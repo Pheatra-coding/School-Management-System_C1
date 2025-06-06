@@ -1,6 +1,7 @@
 import { Classroom } from "./Classroom";
 import { Grade } from "./Grade";
 import { Subject } from "./Subject";
+import { Student } from "./Student";
 
 export class Exam{
     constructor(
@@ -43,6 +44,17 @@ export class Exam{
     setRoom(room: Classroom): void {
         this.room = room;
     }
+
+    getStudents(): Student[] {
+        const students = this.subject.getStudents();
+        if (Array.isArray(students)) {
+            return students;
+        } else if (students !== undefined && students !== null) {
+            return [students];
+        } else {
+            return [];
+        }
+    }   
     
     getResult(): number {
         return this.result;
@@ -53,11 +65,16 @@ export class Exam{
       throw new Error('Invalid grade score');
     }
     this.result = score;
-  }
+    }
 
-  getExamByStudentId(studentId: number): Exam[] {
-    return [this];
-  }
-
+    getExamByStudentId(studentId: number): Exam[] {
+        const students = this.getStudents();
+        for (let student of students) {
+            if (student.getId() === studentId) {
+                return [this];
+            }
+        }
+        return [];
+    }
 
 }

@@ -5,6 +5,9 @@ import { Assignment } from "./Assignment";
 import { Material } from "./Material";
 import { Exam } from "./Exam";
 export class Subject {
+    getStudents() {
+        throw new Error("Method not implemented.");
+    }
     constructor(
         private id: number,
         private name: string,
