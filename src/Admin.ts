@@ -47,7 +47,7 @@ export class Admin extends Person {
 
 
    assignTeacherToClassroom(classroom: Classroom, teacher: Teacher): void {
-    classroom.setTeacher(teacher);
+    classroom.setTeacher([teacher]);
     console.log(`${this.getFullName()} assigned teacher ${teacher.getFullName()} to classroom ${classroom.getRoomName()}.`);
   }
 

@@ -17,9 +17,14 @@ const admin = new Admin(1, "Admin", "admin@gmail.com", "admin123");
 
 if (admin.login("admin@gmail.com", "admin123")) {
     console.log("✅ Admin logged in.");
+ //==================== ADMIN ASSIGN TEACHER TO CLASSROOM ====================//
+const adminClassroom = new Classroom("Admin Room");
+const teacher3 = new Teacher(1, "Admin Teacher", "adminTeacher@gmail.com", "adminTeacher123");
+adminClassroom.setTeacher([teacher3]);
+
 
     //==================== STUDENT ACCOUNT CREATION ====================//
-    const Ahnoch = admin.createStudent(1, "Ah Noch PhengNeang", "nochGang@gmail.com", "Noch123");
+    const Ahnoch = admin.createStudent(1, "Ahnoch Phengneang", "nochGang@gmail.com", "Noch123");
     const Kosal = admin.createStudent(2, "Kosal Poy", "KosalGang@gmail.com", "sally123");
     const pheaktra = new Student(3, "Pheaktra OEM", "pheaktra@gmail.com", "Pheak123");
 
@@ -37,9 +42,10 @@ if (admin.login("admin@gmail.com", "admin123")) {
     yon.login("yon@gmail.com", "yon@1234");
 
     //==================== CLASSROOM AND SUBJECT SETUP ====================//
-    const B13 = new Classroom("B13");
-    const B14 = new Classroom("B14");
-    const B12 = new Classroom("B12");
+    const B13 = new Classroom("B13", [teacher1] );
+    const B14 = new Classroom("B14", [mengheang]);
+    const B12 = new Classroom("B12", [yon]);
+    
 
     const subjectOOP = new Subject(1, "OOP", B13, "OOP2025", teacher1, [Ahnoch], [], [], null, true);
     admin.assignSubjectToTeacher(subjectOOP, teacher1);
